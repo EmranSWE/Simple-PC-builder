@@ -5,7 +5,17 @@ import ProductCard from "@/components/UI/ProductCard";
 import { Typography } from "antd";
 import Link from "next/link";
 const { Title } = Typography;
+import { Carousel } from "antd";
+const contentStyle = {
+  height: "160px",
+  color: "#fff",
+  lineHeight: "160px",
+  textAlign: "center",
+  background: "#364d79",
+};
 
+import img1 from "../components/Assets/1.jpg";
+import img2 from "../components/Assets/2webp.webp";
 const HomePage = ({ Data }) => {
   const products = Data;
   return (
@@ -17,8 +27,39 @@ const HomePage = ({ Data }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div style={{ textAlign: "center" }}>
+        <Carousel autoplay>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <img
+              src={products[0].image}
+              alt=""
+              style={{ maxWidth: "full", height: "auto" }}
+            />
+          </div>
+          <div>
+            <img
+              src={products[1].image}
+              alt=""
+              style={{ width: "auto", height: "auto" }}
+            />
+          </div>
+          <div>
+            <img
+              src={products[2].image}
+              alt=""
+              style={{ width: "auto", height: "auto" }}
+            />
+          </div>
+        </Carousel>
         <Title>Feature Product</Title>
       </div>
+      <img src="img1" alt="" />
+
       <Row>
         {products.map((product) => (
           <Col xs={24} sm={12} md={8} lg={6} key={product._id} span={8}>
@@ -43,7 +84,7 @@ const HomePage = ({ Data }) => {
                   style={{
                     position: "absolute",
                     bottom: "0px",
-                    background: "rgba(0, 0, 0, 0.5)", // you can adjust the color and opacity
+                    background: "rgba(0, 0, 0, 0.5)",
                     color: "white",
                     width: "100%",
                     fontSize: "20px",
