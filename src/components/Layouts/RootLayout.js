@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   ProfileOutlined,
   MobileOutlined,
@@ -127,6 +128,18 @@ const items = [
   },
 ];
 const RootLayout = ({ children }) => {
+  const [menuMode, setMenuMode] = useState("horizontal");
+
+  useEffect(() => {
+    const setResponsiveness = () => {
+      return window.innerWidth < 576
+        ? setMenuMode("vertical")
+        : setMenuMode("horizontal");
+    };
+    setResponsiveness();
+    window.addEventListener("resize", () => setResponsiveness());
+  }, []);
+
   return (
     <Layout>
       <Header
@@ -138,7 +151,7 @@ const RootLayout = ({ children }) => {
         <div className="brand-logo">
           <h1>
             <Link
-              href="/pc/PcBuilder"
+              href="/"
               style={{
                 color: "white",
                 backgroundColor: "#404040",
@@ -146,32 +159,40 @@ const RootLayout = ({ children }) => {
                 borderRadius: "3px",
               }}
             >
-              PC_Builder
+              Simple PC Builder
+            </Link>
+          </h1>
+        </div>
+        <div className="brand-logo">
+          <h1>
+            <Link
+              href="/pc/PcBuilder"
+              style={{
+                color: "white",
+                backgroundColor: "Green",
+                padding: "5px 10px",
+                borderRadius: "3px",
+              }}
+            >
+              Build_PC
             </Link>
           </h1>
         </div>
         <Menu theme="dark" mode="vertical" className={styles.menu_items}>
-          <Link href="/about">
-            <items
-              style={{
-                margin: "0px 25px",
-              }}
-            >
-              <UserOutlined />
-              About Us
-            </items>
-          </Link>
-          <Link href="/contact">
-            <items>
-              <MobileOutlined />
-              Contact Us
-            </items>
-          </Link>
-          <items
-            style={{
-              margin: "0px 25px",
-            }}
-          >
+          {menuMode === "horizontal" ? (
+            <Link href="/about">
+              <items
+                style={{
+                  margin: "0px 25px",
+                }}
+              >
+                <UserOutlined />
+                About Us
+              </items>
+            </Link>
+          ) : null}
+
+          <items>
             <Dropdown
               menu={{
                 items,
@@ -192,36 +213,6 @@ const RootLayout = ({ children }) => {
       >
         {children}
       </Content>
-
-      <Footer
-        style={{
-          textAlign: "center",
-        }}
-      >
-        <div className={styles.line}></div>
-        <h2
-          style={{
-            fontSize: "28px",
-          }}
-        >
-          PC_Builder
-        </h2>
-        <p className={styles.social_icons}>
-          <Link href="">
-            <FacebookFilled />
-          </Link>
-          <Link href="www.twitter.com">
-            <TwitterSquareFilled />
-          </Link>
-          <Link href="">
-            <GoogleSquareFilled />
-          </Link>
-          <Link href="www.linkedin.com">
-            <LinkedinFilled />
-          </Link>
-        </p>
-        PC Builder ©2023 Created by Emran
-      </Footer>
     </Layout>
   );
 };

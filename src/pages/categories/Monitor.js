@@ -1,14 +1,17 @@
 import RootLayout from "@/components/Layouts/RootLayout";
 import ProductCard from "@/components/UI/ProductCard";
 import { Col, Row } from "antd";
-import React from "react";
+import { Typography } from "antd";
+const { Title } = Typography;
 
 const Monitor = ({ Data }) => {
   const products = Data.data;
 
   return (
     <div>
-      <h1>Monitor</h1>
+      <div style={{ textAlign: "center" }}>
+        <Title>Monitor</Title>
+      </div>
       <Row>
         {products.map((product) => (
           <Col xs={24} sm={12} md={8} lg={6} key={product._id} span={8}>

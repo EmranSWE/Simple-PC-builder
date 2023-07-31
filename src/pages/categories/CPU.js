@@ -1,14 +1,17 @@
 import RootLayout from "@/components/Layouts/RootLayout";
 import ProductCard from "@/components/UI/ProductCard";
 import { Col, Row } from "antd";
-import React from "react";
+import { Typography } from "antd";
+const { Title } = Typography;
 
 const CPU = ({ Data }) => {
   const products = Data.data;
 
   return (
     <div>
-      <h1>CPU </h1>
+      <div style={{ textAlign: "center" }}>
+        <Title>CPU / Processor</Title>
+      </div>
 
       <Row>
         {products.map((product) => (
