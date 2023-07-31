@@ -3,13 +3,12 @@ import ProductCard from "@/components/UI/ProductCard";
 import { Col, Row } from "antd";
 import React from "react";
 
-const CPU = ({ Data }) => {
+const Monitor = ({ Data }) => {
   const products = Data.data;
 
   return (
     <div>
-      <h1>CPU </h1>
-
+      <h1>Monitor</h1>
       <Row>
         {products.map((product) => (
           <Col xs={24} sm={12} md={8} lg={6} key={product._id} span={8}>
@@ -21,14 +20,14 @@ const CPU = ({ Data }) => {
   );
 };
 
-export default CPU;
-CPU.getLayout = function getLayout(page) {
+export default Monitor;
+Monitor.getLayout = function getLayout(page) {
   return <RootLayout>{page}</RootLayout>;
 };
 
 export const getStaticProps = async () => {
   try {
-    const res = await fetch(`${process.env.URL}/products/?category=CPU`);
+    const res = await fetch(`${process.env.URL}/products/?category=Monitor`);
     if (!res.ok) {
       throw new Error("Network response was not ok");
     }
